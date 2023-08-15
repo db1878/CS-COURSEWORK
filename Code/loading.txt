@@ -1,0 +1,67 @@
+import pygame
+
+pygame.init()
+#frames
+FPS = 60
+clock = pygame.time.Clock()
+#variables
+screen_width = 1024
+screen_height = 736
+tile_size = 16
+
+#caption and display
+
+screen = pygame.display.set_mode((screen_width, screen_height ))
+pygame.display.set_caption('gme.0.0.0.1')
+
+#define colours
+GREEN = (144, 201, 120)
+WHITE = (255, 255, 255)
+RED = (200, 25 , 25)
+
+
+
+# List of unique numbers
+unique_numbers = [-1, 2, 3, 4, 7, 8, 9, 10, 11, 26, 28, 30, 31, 32, 33, 34, 35, 36, 37, 51, 52, 53, 54, 55, 56, 61, 62, 76, 77, 78, 79, 80, 102, 103, 104, 127, 128, 129, 151, 154, 155, 176, 180, 197, 201, 202, 203, 204, 205, 211, 227, 228, 229, 251, 252, 253, 254, 255, 276, 277, 278, 279, 280, 301, 302, 303, 304, 305, 326, 327, 328, 329, 330, 352, 353, 363, 377, 378, 379, 388, 401, 402, 404, 405, 426, 428, 430, 431, 433, 452, 477, 478, 479, 481, 504, 505, 507, 508, 531, 557, 558, 580, 581, 582]
+
+# Source folder for the images
+source_folder = "Map/levels/images/blocks/need/terrain_used/"
+
+# Generate code for block variables
+block_code = ""
+for num in unique_numbers:
+    if num != -1:
+        if num in [153, 177, 178, 179]:
+            block_code += f"block_{num} = block_531\n"
+        else:
+            block_code += f"block_{num} = pygame.image.load('{source_folder}{num}.png').convert_alpha()\n"
+
+# Load images into pygame using exec
+exec(block_code)
+
+
+
+
+run = True
+while run:
+
+
+    clock.tick(FPS)
+
+    screen.fill(WHITE)
+
+    
+
+
+
+
+ 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+
+
+    pygame.display.update()
+
+pygame.quit()
